@@ -7,15 +7,7 @@
         Dado el siguiente documento HTML, en donde se representan 3 objetos SVG (un círculo, un rectángulo y un triángulo) se nos pide:
         - Definir en una constante a la que llamaremos myCircle el objeto [circle] accediendo a él a través de su id.
         - Definir en una constante a la que llamaremos myRect el objeto [rect] accediendo a él a través de la clase que tiene definida.
-        - Definir en una constante a la que llamaremos myPolygon el objeto [polygon] accediendo a él a través de su etiqueta.
-        
-    -- CATALÀ
-    -- EXERCICI 3.2.1 ENUNCIAT: 
-        Accés als elements del DOM:
-        Donat el següent document HTML, on es representen 3 objectes SVG (un cercle, un rectangle i un triangle) se'ns demana:
-        - Definir en una constant que anomenarem myCircle l'objecte [circle] accedint-hi mitjançant la seva id.
-        - Definir en una constant que anomenarem myRect l'objecte [rect] accedint-hi mitjançant la classe que té definida.
-        - Definir en una constant que anomenarem myPolygon l'objecte [polygon] accedint-hi mitjançant la seva etiqueta.  
+        - Definir en una constante a la que llamaremos myPolygon el objeto [polygon] accediendo a él a través de su etiqueta. 
 -->
 <!DOCTYPE html>
 <html>
@@ -54,13 +46,10 @@
         </ul>
         <script defer id="solution">
             //Escribe aquí tu solución / escriviu aquí la vostra solució:
-	
-            const myCircle  = document.getElementById("circle");        // <li id="circle">
 
-            const myRect    = document.getElementsByClassName("rect")[0]; // <li class="rect">
-
-            const myPolygon = document.getElementsByTagName("polygon")[0]; // <polygon> (no el <li>)
-           
+            const myCircle = document.getElementById('circle').getElementsByTagName('circle')[0];
+            const myRect = document.getElementsByClassName('rect')[0].getElementsByTagName('rect')[0];
+            const myPolygon = document.getElementsByTagName("polygon")[0];
         </script>
 
         <script defer id="test">
