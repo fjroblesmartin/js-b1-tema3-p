@@ -10,16 +10,7 @@
         2.- Mediante un script, acceder al elemento y modificar su contenido para que en lugar de "INITIAL CONTENT" en su interior contenga el texto "FEATURED CONTENT".
         3.- A continuación, mediante el script anterior, desasignarle la clase que tiene ahora asignada "normalContent" (pero sin que pierda las propiedades definidas en la clase "content") 
             y añadirle la clase que hemos definido "featuredContent".
-            
-    -- CATALÀ
-    -- EXERCICI 3.2.2 ENUNCIAT: 
-        Modificació dels elements del DOM.
-        Donat el següent document HTML que inclou al seu cos un element DIV identificat com a "myContent" que conté un text. Ens demanen modificar-lo per aconseguir el següent:
-        1.- Definir una nova classe (entre les etiquetes <style></style>) que anomenarem "featuredContent" i a la qual assignarem un color de fons negre, una vora blava de 2 píxels
-            i un text de color groc amb una alçada de text de 30 píxels i en negreta.
-        2.- Mitjançant un script, accedir a l'element i modificar-ne el contingut perquè en lloc d'"INITIAL CONTENT" al seu interior contingui el text "FEATURED CONTENT".
-        3.- A continuació, mitjançant l'script anterior, desasignar-li la classe que té ara assignada "normalContent" (però sense que perdi les propietats definides a la classe "content")
-            i afegir-hi la classe que hem definit "featuredContent".       
+                
 -->
 <!DOCTYPE html>
 <html>
@@ -36,7 +27,13 @@
 				background-color: grey;
 			}
             /*Escribe aquí tu solución / escriviu aquí la vostra solució:*/
-            
+            .featuredContent {
+                background-color: black;
+                border: 2px solid blue;
+                color: yellow;
+                font-size: 30px; 
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
@@ -44,6 +41,13 @@
         <script defer id="solutionJS">
             //Escribe aquí tu solución / escriviu aquí la vostra solució:
 			
+            // Accede al elemento y modifica su contenido
+            const myDiv = document.getElementById('myContent');
+            myDiv.textContent = 'FEATURED CONTENT'; // o myDiv.innerHTML = 'FEATURED CONTENT';
+            
+            // Desasigno la clase "normalContent" y añado la clase "featuredContent"
+            myDiv.classList.remove('normalContent');
+            myDiv.classList.add('featuredContent');
         </script>
         <script defer id="test">
             /**
