@@ -9,12 +9,6 @@
     cuando se detecte el evento, cambie el color del elemento por el color del elemento inmediatamente a su derecha (para el caso del triángulo, tomará el 
     valor del color que tiene definido el primer elemento, el círculo en este caso, al no tener más elementos a su derecha).
 	
-    -- CATALÀ
-    -- EXERCICI 3.3.1 ENUNCIAT: 
-    Donat el següent document HTML, on es representen 3 objectes SVG (un cercle vermell, un rectangle verd i un triangle taronja) se'ns demana:
-    Utilitzar el mètode "addEventListener" per afegir un esdeveniment en passar el ratolí per sobre (mouseover) a cadascun dels elements SVG de manera que,
-    quan es detecti l'esdeveniment, canvieu el color de l'element pel color de l'element immediatament a la dreta (per al cas del triangle, prendrà el
-    valor del color que té definit el primer element, el cercle en aquest cas, en no tenir més elements a la dreta).
 -->
 <!DOCTYPE html>
 <html>
@@ -47,7 +41,43 @@
     </div>
     <script defer id="solutionJS">
         //Escribe aquí tu solución / escriviu aquí la vostra solució:
-          
+       
+        const circle = document.getElementById('circle');
+        const rect = document.getElementById('rect');
+        const polygon = document.getElementById('polygon');
+
+        // Obtenemos los colores iniciales de cada elemento
+        // Usamos getComputedStyle para obtener el valor de la propiedad 'fill' (color)
+        const colorCircle = window.getComputedStyle(circle).getPropertyValue('fill');
+        const colorRect = window.getComputedStyle(rect).getPropertyValue('fill');
+        const colorPolygon = window.getComputedStyle(polygon).getPropertyValue('fill');
+
+        // Creamos una lista de los elementos y los colores que deben tomar al pasar el ratón
+        // La estructura es un array de objetos, donde cada objeto contiene:
+        // - element: el elemento SVG
+        // - nextColor: el color que debe adoptar (el del elemento a su derecha)
+        const elements = [
+            {
+                element: circle,
+                nextColor: colorRect // Círculo toma el color del Rectángulo (verde)
+            },
+            {
+                element: rect,
+                nextColor: colorPolygon // Rectángulo toma el color del Triángulo (naranja)
+            },
+            {
+                element: polygon,
+                nextColor: colorCircle // Triángulo toma el color del Círculo (rojo) - Cíclico
+            }
+        ];
+
+        // 3. Iterar sobre la lista y agregar el evento 'mouseover'
+        elements.forEach(item => {
+            item.element.addEventListener('mouseover', function() {
+                // Al detectar el evento, cambiamos el atributo 'fill' (color) del elemento
+                item.element.setAttribute('fill', item.nextColor);
+            });
+        });          
 	</script>
     <script defer id="test">
         /**
