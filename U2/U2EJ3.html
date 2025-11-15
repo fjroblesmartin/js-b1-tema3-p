@@ -13,19 +13,6 @@
 	- Finalmente, eliminar uno de los elementos de la clase "paragraph" creados anteriormente.	
 	  
 	Consejo: para comprobar si un elemento existe: si lo capturamos en una variable desde el DOM con el método querySelector y no existe, el valor de la variable será null. 
-  	
-    -- CATALÀ
-    -- EXERCICI 3.2.2 ENUNCIAT: 
-	Creació i eliminació d'elements del DOM:
-	Donat el següent document HTML, se'ns demana:
-	- Crear una funció, a la qual anomenarem (createTitle) que rebi un text i que, després de comprovar al DOM que no existeix un element de la classe "title" (si existeix no farà res), creï un element de tipus <div>
-	  al qual definirem de la classe "title" i al que, abans d'afegir-lo a l'element amb id = myContent del DOM, afegirem un element de tipus <H1> que contingui al seu interior el text rebut per paràmetre.
-	- Crear una funció, a la qual anomenarem (createParagraph) que rebi un text i que, després de comprovar al DOM que existeix un element de la classe "title" (si no existeix no farà res)
-	  creï un element de tipus <p> el qual el definirem amb la classe "paragraph" i l'afegirem a l'element de la classe "title" definit anteriorment.
-	- Implementar trucades a les funcions anteriors de manera que creem al DOM un element de la classe "title" i hi afegim 3 elements de la classe "paragraph" amb textos diferents.
-	- Finalment, elimineu un dels elements de la classe "paragraph" creats anteriorment.
-	
-	Consell: per comprovar si un element existeix: si el capturem en una variable des del DOM amb el mètode querySelector i no hi existeix, el valor de la variable serà null.
 
 -->
 <!DOCTYPE html>
@@ -54,7 +41,72 @@
     </body>
 	<script defer id="solutionJS">
         //Escribe aquí tu solución / escriviu aquí la vostra solució:
+	
+		//Creo la primera función
+		function createTitle(text) {
+			// Comprobar si ya existe un elemento con la clase "title"
+			const existingTitle = document.querySelector('.title');
+
+			// Si ya existe, salimos de la función (no hace nada)
+			if (existingTitle) {
+				console.log('El título ya existe, no se crea uno nuevo.');
+				return;
+			}
+
+    	// Creo el nuevo elemento <div>
+    	const newDiv = document.createElement('div');
+    	// Le asigno la clase "title"
+    	newDiv.classList.add('title');
+    	// Creo el elemento <h1>
+    	const newH1 = document.createElement('h1');
+    	// Asignaro el texto recibido por parámetro
+    	newH1.textContent = text;
+    	// Añado el <h1> al <div>
+    	newDiv.appendChild(newH1);
+    	// Obtengo el elemento padre donde se añadirá (id = myContent)
+    	const container = document.getElementById('myContent');
+    	// Añado el nuevo <div> al contenedor del DOM
+    	container.appendChild(newDiv);
+}
+	//Creo la segunda fucion
+	function createParagraph(text) {
+		const titleElement = document.querySelector('.title');
+		if (!titleElement) {
+			console.log('El elemento "title" no existe, no se puede crear el párrafo.');
+			return;
+		}
+		const newP = document.createElement('p');
+		newP.classList.add('paragraph');
+		newP.textContent = text;
+		titleElement.appendChild(newP);
+	}
+
+	// IMPLEMENTANDO LLAMADAS Y ELIMINACIÓN
+
+	// Implementar llamadas para crear el "title" y 3 "paragraph"
+	console.log('--- Iniciando implementación ---');
+	createTitle('TÍTULO PRINCIPAL DE LA PÁGINA');
+
+	// Añadimos los 3 párrafos distintos
+	createParagraph('Primer párrafo de contenido, hola.');
+	createParagraph('Segundo párrafo hola, hola.');
+	createParagraph('Tercer párrafo hola, hola, caracola.');
+
+	// Elimino uno de los elementos de la clase "paragraph" creados
+	// Obtenemos la lista de todos los párrafos de la clase "paragraph"
+	const paragraphs = document.querySelectorAll('.paragraph');
+	// Comprobamos si existe al menos un párrafo para eliminar
+	if (paragraphs.length > 0) {
+		// Elegimos el último párrafo creado para eliminarlo (paragraphs[2] en este caso, o paragraphs[paragraphs.length - 1])
+		const paragraphToRemove = paragraphs[paragraphs.length - 1]; 
+		// Lo eliminamos
+		paragraphToRemove.remove();
 		
+		console.log(`Hecho todo`);
+	} else {
+		console.log('No hay párrafos a eliminar.');
+	}
+
 	</script>
     <script defer id="test">
         /**
