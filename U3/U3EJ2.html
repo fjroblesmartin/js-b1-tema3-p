@@ -8,13 +8,6 @@
   Utilizar el método "addEventListener" para agregar un evento al clicar con el ratón sobre cada elemento (click), de manera que,
   cuando se produzca el evento, se lance una función a la que llamaremos [showClass] que sea capaz de mostrar dentro del elemento
   [myContent] un texto que indique la clase que posee el elemento clicado.
-	
-  -- CATALÀ
-  -- EXERCICI 3.3.2 ENUNCIAT: 
-  Donat el següent document HTML, on es representen 3 divs se'ns demana:
-  Utilitzar el mètode "addEventListener" per afegir un esdeveniment en clicar amb el ratolí sobre cada element (click), de manera que,
-  quan es produeixi l'esdeveniment, es llanci una funció a la qual anomenarem [showClass] que sigui capaç de mostrar dintre de l'element 
-  [myContent] un text amb la classe que té l'element clicat.
 -->
 <!DOCTYPE html>
 <html>
@@ -79,7 +72,33 @@
     <script defer id="solutionJS">
         //Escribe aquí tu solución / escriviu aquí la vostra solució:
         
-    </script>
+        // Usamos querySelector para encontrar el primer div con cada clase de color.
+        const divRojo = document.querySelector('.red');
+        const divVerde = document.querySelector('.green');
+        const divNaranja = document.querySelector('.orange');
+
+        // Obtenemos en lugardonde mostrar el mensaje
+        const areaDeContenido = document.getElementById('myContent');
+
+        // Esta función recibe el "evento" (click) cuando sucede en cualquiera de los cuadrados.
+        function showClass(evento) {
+            // La variable 'elementoClicado' guarda el div que fue pulsado (rojo, verde o naranja).
+            const elementoClicado = evento.currentTarget;
+            
+            // Obtenemos el nombre de la clase
+            const nombreDeClase = elementoClicado.className;
+            
+            // Preparamos el mensaje
+            const mensaje = `Se ha clicado el elemento con la clase: ${nombreDeClase}`;
+            
+            // Ponemos el mensaje en el área de contenido (myContent)
+            areaDeContenido.innerHTML = mensaje;
+        }
+        // Usamos addEventListener para decirle a cada div qué hacer cuando se hace click
+        divRojo.addEventListener('click', showClass);
+        divVerde.addEventListener('click', showClass);
+        divNaranja.addEventListener('click', showClass);
+    </script> 
     <script defer id="test">
         /**
         * TEST
