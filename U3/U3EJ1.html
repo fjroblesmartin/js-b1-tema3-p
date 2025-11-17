@@ -42,36 +42,35 @@
     <script defer id="solutionJS">
         //Escribe aquí tu solución / escriviu aquí la vostra solució:
 
+         // Obtengo la referencia de todos los elementos por su ID
         const circle = document.getElementById('circle');
         const rect = document.getElementById('rect');
         const polygon = document.getElementById('polygon');
 
-        
-        const siguienteColorCircle = 'green'; 
-        const siguienteColorRect = 'orange';
-        const siguienteColorPolygon = 'red'; 
+        //  Almaceno los colores iniciales de cada elemento
+        const initialColors = {
+            circle: window.getComputedStyle(circle).fill, // Debería ser 'red'
+            rect: window.getComputedStyle(rect).fill,     // Debería ser 'green'
+            polygon: window.getComputedStyle(polygon).fill // Debería ser 'orange'
+        };
+
+        // Listener para el CÍRCULO (El primero) ---
+        // Debe tomar el color inicial del Rectángulo (verde)
         circle.addEventListener('mouseover', function() {
-            this.style.fill = siguienteColorCircle;
-        });
-        rect.addEventListener('mouseover', function() {
-            this.style.fill = siguienteColorRect;
-        });
-        polygon.addEventListener('mouseover', function() {
-            // Cambia el color de relleno (fill) al color objetivo
-            this.style.fill = siguienteColorPolygon;
+            circle.style.fill = initialColors.rect;
         });
 
-        
-        circle.addEventListener('mouseout', function() {
-            this.style.fill = 'red';
+        // Listener para el RECTÁNGULO (El del medio) ---
+        // Debe tomar el color inicial del Polígono (naranja)
+        rect.addEventListener('mouseover', function() {
+            rect.style.fill = initialColors.polygon;
         });
-        rect.addEventListener('mouseout', function() {
-            this.style.fill = 'green';
+
+        // Listener para el POLÍGONO (El último/Triángulo) ---
+        // Debe tomar el color inicial del Círculo (rojo)
+        polygon.addEventListener('mouseover', function() {
+            polygon.style.fill = initialColors.circle;
         });
-        polygon.addEventListener('mouseout', function() {
-            this.style.fill = 'orange';
-        });
-            
 	  </script>
     <script defer id="test">
         /**
