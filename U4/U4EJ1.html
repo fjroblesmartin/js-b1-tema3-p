@@ -11,14 +11,6 @@
 	4.- Define los type que faltan por definir en los distintos input.
 	5.- Asigna también la propiedad name de cada elemento del formulario que lo necesite y que no esté definida. 
 
-	-- CATALÀ
-	-- EXERCICI 3.4.1 ENUNCIAT:
-	Donat el següent codi HTML incomplet d'un formulari, completa'l realitzant les següents accions:
-	1.- Defineix en el seu lloc corresponent l'atribut [action] amb un valor vàlid (un valor vàlid seria una adreça verificada de correu electrònic usant "mailto", per exemple: "mailto:myymail@uoc.edu").
-	2.- Defineix en el seu lloc corresponent l'atribut [method] perquè el mètode d'enviament de la informació sigui per POST.
-	3.- Inclou les etiquetes <label> que falten i indica les seves descripcions perquè es vinculin amb els seus elements corresponents.
-	4.- Defineix els types que falten per definir en els diferents input.
-	5.- Assigna també la propietat name de cada element del formulari que ho necessiti i que no estigui definida.
 -->
 <!DOCTYPE html>
 <html>
@@ -28,30 +20,30 @@
     <body>
         <h1>Dog Form</h1>
         <!--Escribe aquí tu solución / escriviu aquí la vostra solució:-->
-        <form>
-            <label >Dog's name:</label>
-            <input type="" id="name" name="" required><br><br>
+        <form action="mailto:myymail@uoc.edu" method="POST" enctype="text/plain">
+            <label for="name">Dog's name:</label>
+            <input type="text" id="name" name="name" required><br><br>
 
-            <label >Dog's age:</label>
-            <input type="" id="age" name="age" min="0" max="20" required><br><br>
+            <label for="age">Dog's age:</label>
+            <input type="number" id="age" name="age" min="0" max="20" required><br><br>
 
             <label>Dog's gender:</label>
-            <input type="" id="male" name="gender" value="Male" required>
-            <label >Male</label>
-            <input type="" id="female" name="gender" value="Female">
-            <label >Female</label><br><br>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label><br><br>
 
             <h4>Vaccinations received:</h4>
-            <input type="" id="rabies" name="vaccinations[]" value="Rabies">
-            <label >Rabies</label><br>
-            <input type="" id="parvovirus" name="vaccinations[]" value="Parvovirus">
-            <label >Parvovirus</label><br>
-            <input type="" id="distemper" name="vaccinations[]" value="Distemper">
-            <label >Distemper</label><br>
-            <input type="" id="hepatitis" name="vaccinations[]" value="Hepatitis">
-            <label >Hepatitis</label><br><br>
+            <input type="checkbox" id="rabies" name="vaccinations[]" value="Rabies">
+            <label for="rabies">Rabies</label><br>
+            <input type="checkbox" id="parvovirus" name="vaccinations[]" value="Parvovirus">
+            <label for="parvovirus">Parvovirus</label><br>
+            <input type="checkbox" id="distemper" name="vaccinations[]" value="Distemper">
+            <label for="distemper">Distemper</label><br>
+            <input type="checkbox" id="hepatitis" name="vaccinations[]" value="Hepatitis">
+            <label for="hepatitis">Hepatitis</label><br><br>
 
-            <label >Dog's breed:</label>
+            <label for="breed">Dog's breed:</label>
             <select id="breed" name="breed" required>
                 <option value="">Select a breed</option>
                 <option value="Labrador Retriever">Labrador Retriever</option>
