@@ -7,11 +7,6 @@
 	"tinted windows" (cristales tintados) o "armored windows" (cristales blindados) no sea posible seleccionar la opción de techo corredizo (sunroof) ni viceversa,
 	debido a que son incompatibles por políticas de seguridad.
 
-	-- CATALÀ
-	-- EXERCICI 3.4.2 ENUNCIAT:
-	Donat el següent codi HTML d'un formulari, on es recullen les dades dels vehicles d'un concessionari, escriu un script de manera que, si en els extres se selecciona 
-	"tinted windows" (vidres tintats) o "armored windows" (vidres blindats) no sigui possible seleccionar l'opció de sostre corredís (sunroof) ni viceversa, 
-	a causa que són incompatibles per polítiques de seguretat.
 -->
 <!DOCTYPE html>
 <html>
@@ -69,6 +64,52 @@
         <script defer id="solutionJS">
         //Escribe aquí tu solución / escriviu aquí la vostra solució:
 
+        // Obtenemos los elementos del formulario
+        const tintedWindows = document.getElementById('tinted-windows');
+        const armoredWindows = document.getElementById('armored-windows');
+        const sunroof = document.getElementById('sunroof');
+
+        // Definimos la función para  manejar la incompatibilidad
+        function handleIncompatibility() {
+            // Verificar si alguna de las opciones de ventanas de seguridad está marcada
+            const isWindowExtraSelected = tintedWindows.checked || armoredWindows.checked;
+
+            if (isWindowExtraSelected) {
+                // Si se selecciona 'tinted windows' o 'armored windows':
+                // Deshabilitar (disabled) el 'sunroof'
+                sunroof.disabled = true;
+                // Si ya estuviera seleccionado, desmarcarlo
+                sunroof.checked = false;
+                
+            } else {
+                // Si ninguna opción de ventana de seguridad está seleccionada:
+                // Habilitar (enabled) el 'sunroof'
+                sunroof.disabled = false;
+            }
+
+            // Comprobar la incompatibilidad inversa: si el sunroof está marcado, deshabilitar las ventanas.
+            if (sunroof.checked) {
+                // Si el 'sunroof' está seleccionado:
+                // Deshabilitar las opciones de ventanas
+                tintedWindows.disabled = true;
+                armoredWindows.disabled = true;
+                // Asegurarse de desmarcarlas si ya lo estuvieran (aunque la lógica anterior lo evitaría)
+                tintedWindows.checked = false;
+                armoredWindows.checked = false;
+            } else {
+                // Si el 'sunroof' no está seleccionado:
+                // Habilitar las opciones de ventanas
+                tintedWindows.disabled = false;
+                armoredWindows.disabled = false;
+            }
+        }
+
+        // 3. Asignar la función a los eventos 'change' de todos los elementos involucrados
+        tintedWindows.addEventListener('change', handleIncompatibility);
+        armoredWindows.addEventListener('change', handleIncompatibility);
+        sunroof.addEventListener('change', handleIncompatibility);
+
+        
         </script>
         <script defer id="test">
             /**
