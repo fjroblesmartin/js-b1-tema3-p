@@ -73,9 +73,15 @@
         //Escribe aquí tu solución / escriviu aquí la vostra solució:
         
         // Usamos querySelector para encontrar el primer div con cada clase de color.
-        const divRojo = document.querySelector('.red');
-        const divVerde = document.querySelector('.green');
-        const divNaranja = document.querySelector('.orange');
+        const divRojo = document.querySelector(".red");
+        const divVerde = document.querySelector(".green");
+        const divNaranja = document.querySelector(".orange");
+
+         // Usamos addEventListener para decirle a cada div qué hacer cuando se hace click
+        divRojo.addEventListener('click', showClass);
+        divVerde.addEventListener('click', showClass);
+        divNaranja.addEventListener('click', showClass);
+
 
         // Obtenemos en lugardonde mostrar el mensaje
         const areaDeContenido = document.getElementById('myContent');
@@ -94,10 +100,7 @@
             // Ponemos el mensaje en el área de contenido (myContent)
             areaDeContenido.innerHTML = mensaje;
         }
-        // Usamos addEventListener para decirle a cada div qué hacer cuando se hace click
-        divRojo.addEventListener('click', showClass);
-        divVerde.addEventListener('click', showClass);
-        divNaranja.addEventListener('click', showClass);
+      
     </script> 
     <script defer id="test">
         /**
