@@ -9,7 +9,7 @@
     ya que al menos, se debe seleccionar un extra para proceder a enviar el formulario y no nos permita enviar el formulario.
 	NOTA: para evitar el envío de un formulario en JS disponemos de event.preventDefault(); siendo event el evento capturado por parámetro en la función addEventListener
 -->
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
     <head>
         <title>Cars Form</title>
@@ -20,7 +20,7 @@
             }
             .content {
                 padding: 20px;
-                text-align: center;			
+                text-align: center;         
                 font-size:40px;
                 color: blue;
                 width: 100%;
@@ -32,8 +32,7 @@
 
         <div class="container">
             
-        <form>
-            <label for="car-model">Car Model:</label>
+        <form id="car-form"> <label for="car-model">Car Model:</label>
             <input type="text" id="car-model" name="car-model">
             <br><br>            
             <label for="year-of-registration">Year of Registration:</label>
@@ -47,20 +46,19 @@
             <input type="radio" id="gasoline" name="fuel-type" value="gasoline">
             <br><br>
 
-            <label>Vehicle Extras:</label>
-            <input type="checkbox" id="gps" name="extras" value="gps">
+            <label>Vehicle Extras:</label><br> <input type="checkbox" id="gps" name="extras" value="gps" class="extra-checkbox">
             <label for="gps">GPS</label>
             <br>
-            <input type="checkbox" id="leather-seats" name="extras" value="leather-seats">
+            <input type="checkbox" id="leather-seats" name="extras" value="leather-seats" class="extra-checkbox">
             <label for="leather-seats">Leather Seats</label>
             <br>
-            <input type="checkbox" id="sunroof" name="extras" value="sunroof">
+            <input type="checkbox" id="sunroof" name="extras" value="sunroof" class="extra-checkbox">
             <label for="sunroof">Sunroof</label>
             <br>
-            <input type="checkbox" id="armored-windows" name="extras" value="armored-windows">
+            <input type="checkbox" id="armored-windows" name="extras" value="armored-windows" class="extra-checkbox">
             <label for="armored-windows">Armored windows</label>
             <br>
-            <input type="checkbox" id="tinted-windows" name="extras" value="tinted-windows">
+            <input type="checkbox" id="tinted-windows" name="extras" value="tinted-windows" class="extra-checkbox">
             <label for="tinted-windows">Tinted windows</label>
             <br><br>
 
@@ -76,45 +74,39 @@
             <input type="submit" value="Submit" id="mySubmit">
         </form>
         </div>
-		<div id="myContent" class="content"></div>
+        <div id="myContent" class="content"></div>
     </body>
     <script defer id="solutionJS">
-        //Escribe aquí tu solución / escriviu aquí la vostra solució:
-        // Obtenemos una referencia al formulario y al elemento de contenido
-        const form = document.querySelector("form");
-        const myContent = document.getElementById("myContent");
+        //Escribe aquí tu solución :
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtenemos el formulario y el elemento de contenido
+            const form = document.getElementById('car-form');
+            const contentDiv = document.getElementById('myContent');
 
-        // Añadimos un listener al evento "submit" del formulario
-        form.addEventListener("submit", function(event) {
-            // Obtenemos todos los checkboxes con el nombre "extras"
-            const extrasCheckboxes = document.querySelectorAll('input[name="extras"]"');
-            
-            // Comprobamos si al menos un checkbox está seleccionado
-            let isExtraSelected = false;
-            
-            for (let i = 0; i < extrasCheckboxes.length; i++) {
-                if (extrasCheckboxes[i].checked) {
-                    isExtraSelected = true;
-                    break; 
+            // Escuchamos el evento 'submit' del formulario
+            form.addEventListener('submit', function(event) {
+                // Obtenemos todos los checkboxes de "extras"
+                const extraCheckboxes = document.querySelectorAll('input[name="extras"]');
+                let extraSelected = false;
+
+                // Comprobar si al menos uno está seleccionado
+                for (let i = 0; i < extraCheckboxes.length; i++) {
+                    if (extraCheckboxes[i].checked) {
+                        extraSelected = true;
+                        break; // Sale del bucle si encuentra uno seleccionado
+                    }
                 }
-            }
-            
-            // Si no se seleccionó ningún extra, prevenir el envío y mostrar el mensaje
-            if (!isExtraSelected) {
-                // Prevenir el envío del formulario
-                event.preventDefault(); 
-                
-                // Mostrar el mensaje de error requerido
-                myContent.textContent = "You must select almost one extra";
-                
-                // Opcional: enfocar el primer checkbox de extras para guiar al usuario
-                extrasCheckboxes[0].focus(); 
-            } else {
-                // Si la validación es exitosa, limpiar cualquier mensaje de error anterior
-                myContent.textContent = "";
-                // El formulario se enviará ya que no se llama a event.preventDefault()
-            }
+
+                // Si no hay ningún extra seleccionado, prevenir el envío
+                if (!extraSelected) {
+                    event.preventDefault(); // Detiene el envío del formulario
+                    contentDiv.textContent = "You must select almost one extra"; // Muestra el mensaje de error
+                } else {
+                    contentDiv.textContent = "Formulario enviado!"; 
+                }
+            });
         });
+        
     </script>
     <script defer id="test">
         /**
