@@ -8,15 +8,6 @@
 	- Definir en una constante denominada myTriangle el valor del primer objeto Triangle que se encuentra definido en este texto (obteniéndolo desde el localStorage).
 	- Modificar el valor de la propiedad rightTriangle de este nuevo objeto myTriangle, de manera que ahora sea false.
 	- Pasar este nuevo objeto (ya modificado) al sessionStorage en la clave "newTriangle".
-	
-
-  -- CATALÀ
-  -- EXERCICI 3.5.2 ENUNCIAT:
-	El codi donat emmagatzema al localStorage el valor associat a la clau "myTriangles", un text pla en format JSON que conté la descripció d'un Array amb tres objectes de la classe Triangle,
-	(vista a l'exercici 2.5.3), amb aquesta premissa se'ns demana:
-	- Definir en una constant anomenada myTriangle el valor del primer objecte Triangle que es troba definit en aquest text (obtenint-lo des del localStorage).
-	- Modificar el valor de la propietat rightTriangle d'aquest nou objecte myTriangle, de manera que ara sigui false.
-	- Passar aquest nou objecte (ja modificat) al sessionStorage a la clau "newTriangle".
 */
 
 localStorage.setItem(
@@ -25,6 +16,27 @@ localStorage.setItem(
 	);
 
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
+
+// Obtenemos el texto JSON del localStorage y convertirlo en un Array de objetos JavaScript.
+const trianglesJSON = localStorage.getItem("myTriangles");
+const trianglesArray = JSON.parse(trianglesJSON);
+
+// Definimos la constante myTriangle con el valor del primer objeto Triangle.
+const myTriangle = trianglesArray[0];
+
+// Modificamos la propiedad rightTriangle del objeto myTriangle a false.
+myTriangle.rightTriangle = false;
+
+// Pasamos este nuevo objeto modificado al sessionStorage en la clave "newTriangle".
+// Primero, convertimos el objeto de nuevo a una cadena JSON para almacenarlo.
+const newTriangleJSON = JSON.stringify(myTriangle);
+sessionStorage.setItem("newTriangle", newTriangleJSON);
+
+// comprobación
+console.log("Objeto myTriangle modificado:", myTriangle);
+console.log("Valor en sessionStorage (newTriangle):", sessionStorage.getItem("newTriangle"));
+
+
 
 /**
  * TEST
