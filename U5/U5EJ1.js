@@ -8,14 +8,6 @@
 	- Definir en una constante denominada myTriangles un Array de objetos Triangle a partir de este texto (obteniéndolo desde el localStorage).
 	- Eliminar el último de los triángulos de este nuevo Array.
 	- Pasar este Array (ya modificado sin el último triángulo) al localStorage donde se encontraba originalmente, en la clave "myTriangles".
-
-	-- CATALÀ
-	-- EXERCICI 3.5.1 ENUNCIAT:
-	El codi donat emmagatzema al localStorage el valor associat a la clau "myTriangles", un text pla en format JSON que conté la descripció d'un Array amb tres objectes de la classe Triangle,
-	(vista a l'exercici 2.5.3), amb aquesta premissa se'ns demana:
-	- Definir en una constant anomenada myTriangles un Array d'objectes Triangle a partir d'aquest text (obtenint el seu valor des del localStorage).
-	- Eliminar el darrer dels triangles d'aquest nou Array.
-	- Passar aquest Array (ja modificat sense el darrer triangle) al localStorage on es trobava originalment, a la clau "myTriangles".
 */
 
 localStorage.setItem(
@@ -24,6 +16,33 @@ localStorage.setItem(
 	);
 
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
+
+// Obtenemos el JSON string del localStorage.
+const trianglesJSON = localStorage.getItem("myTriangles");
+
+// Definimos en una constante denominada myTriangles un Array de objetos Triangle.
+// Parseamos el JSON string a un Array de objetos planos.
+const myTriangles = JSON.parse(trianglesJSON);
+
+// Comprobación: Mostrar el array original
+console.log("Array original (3 triángulos):", myTriangles);
+
+// Eliminamos el último de los triángulos de este nuevo Array.
+// El método 'pop()' elimina el último elemento y lo devuelve (pero no necesitamos el valor devuelto).
+myTriangles.pop();
+
+// Comprobación: Mostrar el array modificado
+console.log("Array modificado (2 triángulos):", myTriangles);
+
+// Pasamos este Array modificado) al localStorage.
+//    a. Convertimos el Array de objetos de nuevo a un string en formato JSON.
+const modifiedTrianglesJSON = JSON.stringify(myTriangles);
+
+//    b. Guardamos el nuevo string JSON en la clave "myTriangles".
+localStorage.setItem("myTriangles", modifiedTrianglesJSON);
+
+// Comprobación: Verificar el contenido del localStorage
+console.log("Contenido final en localStorage:", localStorage.getItem("myTriangles"));
 
 /**
  * TEST
