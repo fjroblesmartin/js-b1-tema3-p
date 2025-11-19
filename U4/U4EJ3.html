@@ -8,14 +8,6 @@
 	sin haber seleccionado al menos un extra, nos  muestre dentro del elemento [myContent] un texto que indique literalmente lo siguiente "You must select almost one extra", 
     ya que al menos, se debe seleccionar un extra para proceder a enviar el formulario y no nos permita enviar el formulario.
 	NOTA: para evitar el envío de un formulario en JS disponemos de event.preventDefault(); siendo event el evento capturado por parámetro en la función addEventListener
-
-	-- CATALÀ
-	-- EXERCICI 3.4.3 ENUNCIAT:
-	Donat el codi HTML següent d'un formulari, on es recullen les dades dels vehicles d'un concessionari, completa'l de manera que, si s'intenta enviar
-	sense haver seleccionat almenys un extra, ens mostri dins de l'element [myContent] un text que indiqui literalment el següent "You must select almost one extra",
-    ja que almenys, cal seleccionar un extra per procedir a enviar el formulari i no ens permeti enviar el formulari.
-	NOTA: per evitar enviar un formulari en JS disposem del mètode event.preventDefault(); sent event l'esdeveniment capturat per paràmetre a la funció addEventListener
-
 -->
 <!DOCTYPE html>
 <html>
@@ -88,7 +80,41 @@
     </body>
     <script defer id="solutionJS">
         //Escribe aquí tu solución / escriviu aquí la vostra solució:
+        // Obtenemos una referencia al formulario y al elemento de contenido
+        const form = document.querySelector("form");
+        const myContent = document.getElementById("myContent");
 
+        // Añadimos un listener al evento "submit" del formulario
+        form.addEventListener("submit", function(event) {
+            // Obtenemos todos los checkboxes con el nombre "extras"
+            const extrasCheckboxes = document.querySelectorAll('input[name="extras"]"');
+            
+            // Comprobamos si al menos un checkbox está seleccionado
+            let isExtraSelected = false;
+            
+            for (let i = 0; i < extrasCheckboxes.length; i++) {
+                if (extrasCheckboxes[i].checked) {
+                    isExtraSelected = true;
+                    break; 
+                }
+            }
+            
+            // Si no se seleccionó ningún extra, prevenir el envío y mostrar el mensaje
+            if (!isExtraSelected) {
+                // Prevenir el envío del formulario
+                event.preventDefault(); 
+                
+                // Mostrar el mensaje de error requerido
+                myContent.textContent = "You must select almost one extra";
+                
+                // Opcional: enfocar el primer checkbox de extras para guiar al usuario
+                extrasCheckboxes[0].focus(); 
+            } else {
+                // Si la validación es exitosa, limpiar cualquier mensaje de error anterior
+                myContent.textContent = "";
+                // El formulario se enviará ya que no se llama a event.preventDefault()
+            }
+        });
     </script>
     <script defer id="test">
         /**
