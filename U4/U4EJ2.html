@@ -75,21 +75,20 @@
             const isWindowExtraSelected = tintedWindows.checked || armoredWindows.checked;
 
             if (isWindowExtraSelected) {
-                // Si se selecciona 'tinted windows' o 'armored windows':
-                // Deshabilitar (disabled) el 'sunroof'
+                // Si se selecciona "tinted windows" o "armored windows":
+                // Deshabilitar el "sunroof"
                 sunroof.disabled = true;
                 // Si ya estuviera seleccionado, desmarcarlo
-                sunroof.checked = false;
-                
+                sunroof.checked = false;     
             } else {
                 // Si ninguna opción de ventana de seguridad está seleccionada:
-                // Habilitar (enabled) el 'sunroof'
+                // Habilitar el "sunroof"
                 sunroof.disabled = false;
             }
 
             // Comprobar la incompatibilidad inversa: si el sunroof está marcado, deshabilitar las ventanas.
             if (sunroof.checked) {
-                // Si el 'sunroof' está seleccionado:
+                // Si el "sunroof" está seleccionado:
                 // Deshabilitar las opciones de ventanas
                 tintedWindows.disabled = true;
                 armoredWindows.disabled = true;
@@ -97,18 +96,17 @@
                 tintedWindows.checked = false;
                 armoredWindows.checked = false;
             } else {
-                // Si el 'sunroof' no está seleccionado:
+                // Si el "sunroof" no está seleccionado:
                 // Habilitar las opciones de ventanas
                 tintedWindows.disabled = false;
                 armoredWindows.disabled = false;
             }
         }
 
-        // 3. Asignar la función a los eventos 'change' de todos los elementos involucrados
+        // Asignamos la función a los eventos "change" de todos los elementos involucrados
         tintedWindows.addEventListener('change', handleIncompatibility);
         armoredWindows.addEventListener('change', handleIncompatibility);
         sunroof.addEventListener('change', handleIncompatibility);
-
         
         </script>
         <script defer id="test">
