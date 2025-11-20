@@ -91,14 +91,8 @@
             // La variable 'elementoClicado' guarda el div que fue pulsado (rojo, verde o naranja).
             const elementoClicado = evento.currentTarget;
             
-            // Obtenemos el nombre de la clase
-            const nombreDeClase = elementoClicado.className;
-            
-            // Preparamos el mensaje
-            const mensaje = `${nombreDeClase}`;
-            
             // Ponemos el mensaje en el área de contenido (myContent)
-            areaDeContenido.innerHTML = mensaje;
+            areaDeContenido.innerHTML = elementoClicado.className;
         }
       
     </script> 
